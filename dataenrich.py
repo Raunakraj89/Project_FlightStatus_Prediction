@@ -10,12 +10,15 @@ def doenrich(spark, input_table, enriched_table):
 
     dfreferencedata = spark.read.format("bigquery").option("table","{}:{}.{}".format(project,reference_dataset,reference_table)).load()
 
-    dfenriched = df.join(dfreferencedata,df.depid == dfreferencedata.depid,"inner")
+    dfreferencedata.show()
+
+
+    dfenriched = df.join(dfreferencedata,df.dep_id == dfreferencedata.depid,"inner")
     dfenriched.show()
 
     #dfclean = dfenriched.drop("depid")
 
-    dffinal = dfenriched.select(dfenriched.depid, dfenriched.depname, dfenriched.salary)
+    dffinal = dfenriched.select(dfenriched.depid, dfenriched.depname, dfenriched.sal)
 
     dffinal.show()
     dffinal.write.format("bigquery").option("temporaryGcsBucket","tempbucketparesh").option("table", "{}:{}.{}".format(project, dataset, enriched_table)).mode("append").save()
