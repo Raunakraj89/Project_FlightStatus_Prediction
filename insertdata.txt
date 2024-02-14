@@ -1,0 +1,9 @@
+insert into spring-asset-408702.hr.emp values (1, "Paresh", "Yadav", 1, 10);
+insert into spring-asset-408702.hr.emp values (2, "Gita	", "Yadav", 1, 20);
+insert into spring-asset-408702.hr.emp values (3, "Maunee", "Patel", 2, 30);
+
+insert into spring-asset-408702.hr.emp values (4, "Poonam", "Sharma", 2, 40);
+insert into spring-asset-408702.hr.emp values (5, "Bhakti", "Patel", 3, 50);
+insert into spring-asset-408702.hr.emp values (6, "Archana", "Mistry", 4, 60);
+
+insert into spring-asset-408702.hr.emp values (7, "Raunakraj", "Patel", 5, 70);
