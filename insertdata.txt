@@ -7,3 +7,11 @@ insert into spring-asset-408702.hr.emp values (5, "Bhakti", "Patel", 3, 50);
 insert into spring-asset-408702.hr.emp values (6, "Archana", "Mistry", 4, 60);
 
 insert into spring-asset-408702.hr.emp values (7, "Raunakraj", "Patel", 5, 70);
+
+
+
+++++++++++++++++++++++++++++++
+insert into spring-asset-408702.referencedata.dept values (1, "IT", "NYC");
+insert into spring-asset-408702.referencedata.dept values (2, "HR", "NYC");
+insert into spring-asset-408702.referencedata.dept values (3, "Finance", "NYC");
+insert into spring-asset-408702.referencedata.dept values (4, "Support", "Banglore");

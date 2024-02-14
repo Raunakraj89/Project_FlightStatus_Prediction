@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # Parse the arguments
     args = parser.parse_args()
     #doWork()
-    spark = sql.SparkSession.builder.appName("Read GCS CSV file").getOrCreate()
+    spark = sql.SparkSession.builder.appName("Enrich Data").getOrCreate()
 
     #doWork2MySQL(spark, args.input_table, args.landing_dir)
     doenrich(spark, args.input_table, args.enriched_table)
