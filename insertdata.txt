@@ -15,3 +15,5 @@ insert into spring-asset-408702.referencedata.dept values (1, "IT", "NYC");
 insert into spring-asset-408702.referencedata.dept values (2, "HR", "NYC");
 insert into spring-asset-408702.referencedata.dept values (3, "Finance", "NYC");
 insert into spring-asset-408702.referencedata.dept values (4, "Support", "Banglore");
+insert into spring-asset-408702.referencedata.dept values (5, "Sales", "Chicago");
+

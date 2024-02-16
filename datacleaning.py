@@ -9,5 +9,5 @@ def doclean(spark, input_gcsfile, bq_table):
     dfclean.show()
     dfclean.write.format("bigquery").option("temporaryGcsBucket","tempbucketparesh").option("table", "{}:{}.{}".format(project, dataset, bq_table)).mode("append").save()
 
-    #dfclean.write.format("bigquery").option("table", "spring-asset-408702:stg.clean_data").option("temporaryGcsBucket","gs://tempbucketparesh").option("mode",                                                                                                  "append").save()
+    #dfclean.write.format("bigquery").option("table", "spring-asset-408702:stg.clean_data").option("temporaryGcsBucket","tempbucketparesh").option("mode",  "overwrite")                                                                                                "append").save()
 
