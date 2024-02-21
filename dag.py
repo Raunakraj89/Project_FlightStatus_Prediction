@@ -17,57 +17,77 @@ CLUSTER_NAME = 'dataproc-airflow-cluster'
 REGION = 'us-central1'
 PROJECT_ID = 'eng-origin-408719'
 jar_path = 'gs://bqdata12/spark-3.1-bigquery-0.36.1.jar'
-project_gcs_path = 'gs://pipeline_scripts'
-Ingest_table = 'emp'
+project_gcs_path = 'gs://pipeline_scripts/'
+Ingest_arg1 = 'emp'
+Ingest_arg2 = project_gcs_path+'landingdata'
+Ingestion_main = 'gs://pipeline_scripts/mainingestwithbq.py'
+Ingestion_files = 'gs://pipeline_scripts/ingestionbq.py'
+DataCleaning_main = 'gs://pipeline_scripts/maincleaningwithbq.py'
+DataCleaning_arg1 = project_gcs_path+"landingdata/*.csv"
+DataCleaning_arg2 = stg_emp
+DataCleaning_files = 'gs://pipeline_scripts/datacleaning.py'
+DataEnrich_main = 'gs://pipeline_scripts/mainenrichmentwithbq.py'
+DataEnrich_arg1 = stg_emp
+DataEnrich_arg2 = enrich_emp
+DataEnrich_files = 'gs://pipeline_scripts/dataenrich.py'
+DataQualitycheck_main = 'gs://pipeline_scripts/enrichdqcheck.py'
+DataQualitycheck_arg1 = stg_emp
+DataQualitycheck_arg2 = enrich_emp
+DataQualitycheck_files = 'gs://pipeline_scripts/enrichdqcheck.py'
+ConsumeData_main = 'gs://pipeline_scripts/maincalculatesummary.py'
+ConsumeData_arg1 = enrich_emp
+ConsumeData_arg2 = consume_emp
+ConsumeData_files = 'gs://pipeline_scripts/calculatesummary.py'
+
 
 Ingest = {
      "reference": {"project_id": PROJECT_ID},
      "placement": {"cluster_name": CLUSTER_NAME},
      "pyspark_job": {
-         "main_python_file_uri": project_gcs_path+"/mainingestwithbq.py",
+         "main_python_file_uri": Ingestion_main,
          "jar_file_uris": [jar_path],
-         "args": [Ingest_table, project_gcs_path+"landingdata"],
-         "python_file_uris": [project_gcs_path+"/ingestionbq.py"],
+         "args": [Ingest_arg1, Ingest_arg2],
+         "python_file_uris": [Ingestion_files],
      }
 }
 DataCleaning = {
      "reference": {"project_id": PROJECT_ID},
      "placement": {"cluster_name": CLUSTER_NAME},
      "pyspark_job": {
-         "main_python_file_uri": project_gcs_path+"maincleaningwithbq.py",
+         "main_python_file_uri": DataCleaning_main,
          "jar_file_uris": [jar_path],
-         "args": ["gs://bqdata12/landingdata/*.csv", "stg_emp"],
-         "python_file_uris": ["gs://bqdata12/datacleaning.py"],
+         "args": [DataCleaning_arg1, DataCleaning_arg2],
+         "python_file_uris": [DataCleaning_files],
      }
 }
 DataEnrich = {
      "reference": {"project_id": PROJECT_ID},
      "placement": {"cluster_name": CLUSTER_NAME},
      "pyspark_job": {
-         "main_python_file_uri": "gs://bqdata12/mainenrichmentwithbq.py",
+         "main_python_file_uri": DataEnrich_main,
          "jar_file_uris": [jar_path],
-         "args": ["stg_emp", "enrich_emp"],
-         "python_file_uris": ["gs://bqdata12/dataenrich.py"],
+         "args": [DataEnrich_arg1, DataEnrich_arg2],
+         "python_file_uris": [DataEnrich_files],
      }
 }
 DataQualitycheck = {
      "reference": {"project_id": PROJECT_ID},
      "placement": {"cluster_name": CLUSTER_NAME},
      "pyspark_job": {
-         "main_python_file_uri": "gs://bqdata12/enrichdqcheck.py",
+         "main_python_file_uri": DataQualitycheck_main,
          "jar_file_uris": [jar_path],
-         "args": ["stg_emp", "enrich_emp"],
-         "python_file_uris": ["gs://bqdata12/enrichdqcheck.py"],
+         "args": [DataQualitycheck_arg1, DataQualitycheck_arg2],
+         "python_file_uris": [DataQualitycheck_files],
      }
 }
 ConsumeData = {
      "reference": {"project_id": PROJECT_ID},
      "placement": {"cluster_name": CLUSTER_NAME},
      "pyspark_job": {
-         "main_python_file_uri": "gs://bqdata12/maincalculatesummary.py",
+         "main_python_file_uri": ConsumeData_main,
          "jar_file_uris": [jar_path],
-         "args": ["enrich_emp", "consume_emp"],
-         "python_file_uris": ["gs://bqdata12/calculatesummary.py"],
+         "args": [ConsumeData_arg1, ConsumeData_arg2],
+         "python_file_uris": [ConsumeData_files],
      }
 }
 
