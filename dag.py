@@ -15,7 +15,7 @@ from airflow.contrib.operators.bigquery_operator import BigQueryOperator
 
 CLUSTER_NAME = 'dataproc-airflow-cluster'
 REGION = 'us-central1'
-PROJECT_ID = 'eng-origin-408719'
+PROJECT_ID = 'strategic-hull-412800'
 jar_path = 'gs://bqdata12/spark-3.1-bigquery-0.36.1.jar'
 project_gcs_path = 'gs://pipeline_scripts/'
 Ingest_arg1 = 'emp'
@@ -24,19 +24,19 @@ Ingestion_main = 'gs://pipeline_scripts/mainingestwithbq.py'
 Ingestion_files = 'gs://pipeline_scripts/ingestionbq.py'
 DataCleaning_main = 'gs://pipeline_scripts/maincleaningwithbq.py'
 DataCleaning_arg1 = project_gcs_path+"landingdata/*.csv"
-DataCleaning_arg2 = stg_emp
+DataCleaning_arg2 = 'stg_emp'
 DataCleaning_files = 'gs://pipeline_scripts/datacleaning.py'
 DataEnrich_main = 'gs://pipeline_scripts/mainenrichmentwithbq.py'
-DataEnrich_arg1 = stg_emp
-DataEnrich_arg2 = enrich_emp
+DataEnrich_arg1 = 'stg_emp'
+DataEnrich_arg2 = 'enrich_emp'
 DataEnrich_files = 'gs://pipeline_scripts/dataenrich.py'
 DataQualitycheck_main = 'gs://pipeline_scripts/enrichdqcheck.py'
-DataQualitycheck_arg1 = stg_emp
-DataQualitycheck_arg2 = enrich_emp
+DataQualitycheck_arg1 = 'stg_emp'
+DataQualitycheck_arg2 = 'enrich_emp'
 DataQualitycheck_files = 'gs://pipeline_scripts/enrichdqcheck.py'
 ConsumeData_main = 'gs://pipeline_scripts/maincalculatesummary.py'
-ConsumeData_arg1 = enrich_emp
-ConsumeData_arg2 = consume_emp
+ConsumeData_arg1 = 'enrich_emp'
+ConsumeData_arg2 = 'consume_emp'
 ConsumeData_files = 'gs://pipeline_scripts/calculatesummary.py'
 
 
