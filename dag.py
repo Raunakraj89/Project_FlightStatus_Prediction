@@ -13,7 +13,7 @@ from airflow.providers.google.cloud.sensors.dataproc import DataprocJobSensor
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCheckOperator
 from airflow.contrib.operators.bigquery_operator import BigQueryOperator
 
-CLUSTER_NAME = 'dataproc-airflow-cluster'
+CLUSTER_NAME = 'emp-dataproc-fullpipeline'
 REGION = 'us-central1'
 PROJECT_ID = 'strategic-hull-412800'
 jar_path = 'gs://bqdata12/spark-3.1-bigquery-0.36.1.jar'
